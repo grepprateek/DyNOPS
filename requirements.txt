@@ -4,7 +4,7 @@ numpy
 scikit-learn
 pgmpy
 networkx
-pyvis
+pyvis==0.3.2
 plotly
 xgboost
 matplotlib
