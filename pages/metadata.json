@@ -1,0 +1,283 @@
+{
+    "Chiffre": {
+        "datatype": "discrete",
+        "category": "patient_data",
+        "description": "A random string given to each case; sometimes a case might be the second therapy of a patient that appears elsewhere in the dataset",
+        "translation": "-",
+        "is_id": true
+    },
+    "session_num": {
+        "datatype": "discrete",
+        "category": "patient_data",
+        "description": "session number of therapy that a patient underwent",
+        "translation": "therapy session number"
+    },
+    "age": {
+        "datatype": "discrete",
+        "category": "patient_data",
+        "description": "In years at the time of the first counseling session at PTA prior to therapy",
+        "translation": "age"
+    },
+    "Geschlecht_PP": {
+        "datatype": "nominal",
+        "category": "patient_data",
+        "description": "m - male; w - female; other categories removed due to small group size",
+        "translation": "gender"
+    },
+    "Beziehung": {
+        "datatype": "nominal",
+        "category": "patient_data",
+        "description": "mit_Partner - living with a partner \n ohne_Partner - living without a partner",
+        "translation": "family status"
+    },
+    "Schulabschluss": {
+        "datatype": "nominal",
+        "category": "patient_data",
+        "description": "Abitur - high school diploma\nRealschule - secondary school diploma\nSonstiges - Miscellaneous",
+        "translation": "highest education"
+    },
+    "Qualifikation": {
+        "datatype": "nominal",
+        "category": "patient_data",
+        "description": "Hochschulstudium - completed college studies\nBerufsausbildung - completed vocational training\nKeine_o_inAusbildung - no further education after school or still in training",
+        "translation": "vocational training"
+    },
+    "Beruf": {
+        "datatype": "nominal",
+        "category": "patient_data",
+        "description": "Arbeiter - laborer, blue collar job\nAngestellter - employee, white collar job\nohneTätigkeit - no job without regard to reason why",
+        "translation": "occupation status"
+    },
+    
+    "Anzahl_BE_Post_PEQ_32": {
+        "datatype": "discrete",
+        "category": "patient_data",
+        "description": "Number of therapy sessions at PTA (not including counseling and diagnostic sessions before the actual therapy started)",
+        "translation": "Number of sessions"
+    },
+    "TherapieStatus_PP": {
+        "datatype": "nominal",
+        "category": "patient_data",
+        "description": "2 - ended regularly\n3 - Ended during trial sessions\n4 - Aborted, due to several reasons like patient not coming regularly, not adhering to conditions, etc.\nother conditions which have been filtered out:\n0 - currently in therapy, has been filtered out\n1 - Pause\n5 - on waiting list\n6 - resignation, when patient decides not to want therapy anymore before trial sessions start\n7 - no indication, when no diagnosis was found during trial sessions\n8, 9 - internal codes for deletion of cases",
+        "translation": "Current state of therapy"
+    },
+    "SCL90_GSI_Prae": {
+        "datatype": "continuous",
+        "category": "clinical_data",
+        "description": "The so-called “Global Severity Index” of the questionnaire “SCL-90-R”. The questionnaire ask for a subjective assessment by the patient on the 90 most common psychopathological symptoms during the last 7 days on a scale from 0 - don’t have it to 4 - have it very severely. The GSI is the average rating of all 90 symptoms. _Prae at start of therapy, _Post at the end",
+        "translation": "-"
+    },
+    "SCL90_GSI_Post": {
+        "datatype": "continuous",
+        "category": "clinical_data",
+        "description": "The so-called “Global Severity Index” of the questionnaire “SCL-90-R”. The questionnaire ask for a subjective assessment by the patient on the 90 most common psychopathological symptoms during the last 7 days on a scale from 0 - don’t have it to 4 - have it very severely. The GSI is the average rating of all 90 symptoms. _Prae at start of therapy, _Post at the end",
+        "translation": "-"
+    },
+    "BDIIISummenwertPrae": {
+        "datatype": "continuous",
+        "category": "clinical_data",
+        "description": "Sum score of the questionnaire BDI-II. It is a detailed and much used questionnaire to assess depression severity. It uses 21 items with different answers for each item that are scored from 0 to 3. The sum score can thus range from 0 (21x0) to 63 (21x3). Beck et al. defined cut-off-values to assess depression severity based on sum score: 0-13 no depression, 14-19 mild depression, 20-28 moderate depression, 29-63 major depression, thus this value could also be categorized. _Prae at start of therapy, _Post at the end.",
+        "translation": "Sum score of BDI-II"
+    },
+    "BDIIISummenwertPost": {
+        "datatype": "continuous",
+        "category": "clinical_data",
+        "description": "Sum score of the questionnaire BDI-II. It is a detailed and much used questionnaire to assess depression severity. It uses 21 items with different answers for each item that are scored from 0 to 3. The sum score can thus range from 0 (21x0) to 63 (21x3). Beck et al. defined cut-off-values to assess depression severity based on sum score: 0-13 no depression, 14-19 mild depression, 20-28 moderate depression, 29-63 major depression, thus this value could also be categorized. _Prae at start of therapy, _Post at the end.",
+        "translation": "Sum score of BDI-II"
+    },
+    "Diag_Count": {
+        "datatype": "continuous",
+        "category": "clinical_data",
+        "description": "Number of different diagnoses throughout therapy, counted using extra knowledge to not count disorders of same category double",
+        "translation": "-"
+    },
+    "full_remission": {
+        "datatype": "binary",
+        "category": "clinical_data",
+        "description": "binary variable indicating presence of full remission at post (i.e., only Z or A diagnosis and other clinical consideration for \"uncurable\" disorders). NAs are true NAs, because the remission could not be properly assessed, either because no diagnosis safety was given or there were still diagnosis with (V) at the end",
+        "translation": "-",
+        "is_target": true
+    },
+    "PrimDiag_Kategorie": {
+        "datatype": "nominal",
+        "category": "clinical_data",
+        "description": "Primary diagnosis was categorized:\n0 - depressive disorder\n1 - anxiety disorder\n2 - adjustment disorder\n3 - PTSD\n4 - eating disorder\n5 - personality disorder\n6 - other",
+        "translation": "primary diagnosis category"
+    },
+    "instance_phq": {
+        "datatype": "string",
+        "category": "questionnaires",
+        "description": "Measurement point of the following variables. All the variables of that line/case that end in the same number (X) are from the same instance, that may be Prae/Post/Z1/Z1/Z2/Z3/FU-1 (for description, see above), Anamnese (during one of the diagnostic sessions), P01 - P05 (during diagnostic session 1 - 5), T01 - T108 (from therapy session 1 - 108) or KriseX (crisis session X, crisis sessions are sometimes used in diagnostic process, sometimes during therapy). If the instance name is followed by \"_02\" or \"_03\" that indicates it is the second or third time the patient has been measured at that time because it's the second or third therapy with us.",
+        "translation": "-"
+    },
+    "phqdat": {
+        "datatype": "date",
+        "category": "questionnaires",
+        "description": "Almost all PHQ/GAD are given as paper/pencil and imported to our data management system later. The date, when the questionnaire was being answered by the patient is being given here. The time can be disregarded. If all goes well, your data should be in chronological order in each case using the timestamp.",
+        "translation": "datetime of questionnaires"
+    },
+    "phq001": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq002": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq003": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq004": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq005": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq006": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq007": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq008": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phq009": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phqsum": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "phqsessions": {
+        "datatype": "discrete",
+        "category": "questionnaires",
+        "description": "Total number of PHQ sessions for a patient",
+        "translation": "-"
+    },
+    "instance_gad": {
+        "datatype": "string",
+        "category": "questionnaires",
+        "description": "Measurement point of the following variables. All the variables of that line/case that end in the same number (X) are from the same instance, that may be Prae/Post/Z1/Z1/Z2/Z3/FU-1 (for description, see above), Anamnese (during one of the diagnostic sessions), P01 - P05 (during diagnostic session 1 - 5), T01 - T108 (from therapy session 1 - 108) or KriseX (crisis session X, crisis sessions are sometimes used in diagnostic process, sometimes during therapy). If the instance name is followed by \"_02\" or \"_03\" that indicates it is the second or third time the patient has been measured at that time because it's the second or third therapy with us.",
+        "translation": "-"
+    },
+    "gaddat": {
+        "datatype": "date",
+        "category": "questionnaires",
+        "description": "Almost all PHQ/GAD are given as paper/pencil and imported to our data management system later. The date, when the questionnaire was being answered by the patient is being given here. The time can be disregarded. If all goes well, your data should be in chronological order in each case using the timestamp.",
+        "translation": "datetime of questionnaires"
+    },
+    "gad001": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad002": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad003": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad004": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad005": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad006": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad007": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad008": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gad009": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gadsum": {
+        "datatype": "ordinal",
+        "category": "questionnaires",
+        "description": "Each item is answered on a four point scale on how ofter the symptom was present in the last week: 0 - not at all; 1 - several days; 2 - more than half the days; 3 - nearly every day.",
+        "translation": "-",
+        "time-dependent": true
+    },
+    "gadsessions": {
+        "datatype": "discrete",
+        "category": "questionnaires",
+        "description": "Total number of GAD sessions for a patient",
+        "translation": "-"
+    }
+}

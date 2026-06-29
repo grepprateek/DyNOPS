@@ -1,0 +1,35 @@
+{
+    "age": {
+        "has_parents": false,
+        "params": {"0": 0.35, "1": 0.45, "2": 0.20}
+    },
+    "severity_(tm1)": {
+        "has_parents": false,
+        "params": {"0": 0.40, "1": 0.38, "2": 0.22}
+    },
+    "medication_(tm1)": {
+        "has_parents": false,
+        "params": {"0": 0.55, "1": 0.45}
+    },
+    "severity_(t)": {
+        "has_parents": true,
+        "parents": ["severity_(tm1)", "medication_(tm1)"],
+        "params": [
+            [1.20, -0.85, -0.60]
+        ]
+    },
+    "medication_(t)": {
+        "has_parents": true,
+        "parents": ["severity_(tm1)"],
+        "params": [
+            [0.50, -0.72]
+        ]
+    },
+    "full_remission": {
+        "has_parents": true,
+        "parents": ["severity_(t)", "medication_(t)", "age"],
+        "params": [
+            [2.10, -1.30, 0.95, -0.40]
+        ]
+    }
+}
