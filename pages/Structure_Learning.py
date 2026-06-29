@@ -645,7 +645,11 @@ def compute_beta_params(dataset: pd.DataFrame, network_edges: dict):
             }
         
         else:
-            X = pd.get_dummies(dataset[parents], drop_first=True, dtype=int)
+            dummies = []
+            for parent in parents:
+                d = pd.get_dummies(dataset[parent], prefix=parent, drop_first=True, dtype=int)
+                dummies.append(d)
+            X = pd.concat(dummies, axis=1)
             X.insert(0, "Intercept", 1)
             y = pd.Categorical(dataset[variable]).codes
             lr = LogisticRegression(solver="lbfgs", fit_intercept=False, max_iter=500)
