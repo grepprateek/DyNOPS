@@ -628,12 +628,7 @@ def create_network_dict(edges, dataset_columns):
         node: list(parents[node])
         for node in dataset_columns
     }
-
 def compute_beta_params(dataset: pd.DataFrame, network_edges: dict):
-    """
-    Computes the multi-logit regression parameters for each node in the given network using the dataset. 
-    If a node does not have any parents, the value counts for each category are normalized to obtain probability for each class.
-    """
     network_params = {}
     for variable in dataset.columns:
         parents = network_edges[variable]
@@ -643,17 +638,23 @@ def compute_beta_params(dataset: pd.DataFrame, network_edges: dict):
                 "has_parents": False,
                 "params": probs
             }
-        
         else:
             dummies = []
             for parent in parents:
                 d = pd.get_dummies(dataset[parent], prefix=parent, drop_first=True, dtype=int)
                 dummies.append(d)
             X = pd.concat(dummies, axis=1)
+
+            # Add intercept column
             X.insert(0, "Intercept", 1)
+
+            # Convert to numpy to avoid narwhals duplicate column name validation
+            X_array = X.to_numpy()
+
             y = pd.Categorical(dataset[variable]).codes
             lr = LogisticRegression(solver="lbfgs", fit_intercept=False, max_iter=500)
-            lr.fit(X, y)
+            lr.fit(X_array, y)
+
             network_params[variable] = {
                 "has_parents": True,
                 "parents": network_edges[variable],
