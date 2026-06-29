@@ -307,7 +307,7 @@ def visualize_bayesian_network_pyvis(
                 "highlight":  {"background": fill, "border": border},
                 "hover":      {"background": fill, "border": border},
             },
-            size=120,
+            size=50,
             borderWidth=2,
             font={"size": 100, "color": "#111111"},
         )
