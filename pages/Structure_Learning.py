@@ -309,7 +309,7 @@ def visualize_bayesian_network_pyvis(
             },
             size=50,
             borderWidth=2,
-            font={"size": 100, "color": "#111111"},
+            font={"size": 30, "color": "#111111"},
         )
 
     # ── edges — thicker, cleaner ───────────────────────────────────── #
