@@ -228,11 +228,11 @@ def visualize_bayesian_network_pyvis(
     G_t.add_nodes_from(t_nodes)
     G_t.add_edges_from(intra_t)
 
-    pos_t = nx.spring_layout(G_t, k=10, iterations=300, seed=23)
+    pos_t = nx.spring_layout(G_t, k=6, iterations=300, seed=23)
 
-    X_OFFSET = 4.5
-    X_SCALE  = 3
-    Y_SCALE  = 5
+    X_OFFSET = 3.5
+    X_SCALE  = 6
+    Y_SCALE  = 9
 
     pos = {}
     for node, (x, y) in pos_t.items():
@@ -272,13 +272,13 @@ def visualize_bayesian_network_pyvis(
 
     # ── colour palette ─────────────────────────────────────────────── #
     C_T_FILL     = "#a8d8f0"   # sky-blue   – (t) temporal nodes
-    C_T_BORDER   = "black"
+    C_T_BORDER   = "#1a7ab5"
     C_T1_FILL    = "#a8e6b8"   # mint       – (t+1) temporal nodes
-    C_T1_BORDER  = "black"
-    C_TGT_FILL   = "#ffadad"   # rose       – target node
-    C_TGT_BORDER = "black"
-    C_STA_FILL   = "#ffd6a5"   # amber      – static (no time suffix)
-    C_STA_BORDER = "black"
+    C_T1_BORDER  = "#1a8c45"
+    C_TGT_FILL   = "#f4a7aa"   # rose       – target node
+    C_TGT_BORDER = "#c0242a"
+    C_STA_FILL   = "#f7c97e"   # amber      – static (no time suffix)
+    C_STA_BORDER = "#b07010"
 
     for node, (x, y) in pos.items():
         if node not in all_nodes:
@@ -307,8 +307,8 @@ def visualize_bayesian_network_pyvis(
                 "highlight":  {"background": fill, "border": border},
                 "hover":      {"background": fill, "border": border},
             },
-            size=50,
-            borderWidth=2,
+            size=52,
+            borderWidth=4,
             font={"size": 30, "color": "#111111"},
         )
 
@@ -318,7 +318,9 @@ def visualize_bayesian_network_pyvis(
     for u, v in intra_t1:
         net.add_edge(u, v, color="rgba(0,0,0,0.45)", width=4)
     for u, v in inter:
-        net.add_edge(u, v, color="#a888b5", width=5, dashes=True)
+        net.add_edge(u, v, color="rgba(80,80,80,0.85)", width=5, dashes=True)
+    for u, v in delay_e:
+        net.add_edge(u, v, color="rgba(180,120,0,0.8)", width=2.5, dashes=True)
 
     net.set_options("""
 var options = {
@@ -542,7 +544,7 @@ def add_delay_edges(edges, dataset_with_delay):
 
 def visualize_bayesian_network(edges):
     G = nx.DiGraph(edges)
-    pos = nx.spring_layout(G, seed=23, k=10)
+    pos = nx.spring_layout(G, seed=23, k=2.5)
 
     edge_x = []
     edge_y = []
@@ -646,6 +648,7 @@ def compute_beta_params(dataset: pd.DataFrame, network_edges: dict):
         
         else:
             X = pd.get_dummies(dataset[parents], drop_first=True, dtype=int)
+            X = X.loc[:, ~X.columns.duplicated()]   # remove any duplicate columns
             X.insert(0, "Intercept", 1)
             y = pd.Categorical(dataset[variable]).codes
             lr = LogisticRegression(solver="lbfgs", fit_intercept=False, max_iter=500)
@@ -704,8 +707,14 @@ if st.button("Learn DBN structure", type="primary"):
         )
 
     st.success(
-        f"Learned {len(edges)} edges for {len(network_dict)} nodes."
+        f"Learned {len(edges)} edges."
     )
+
+    st.write(
+        "Number of nodes:",
+        len(network_dict)
+    )
+
 
 if st.button("Next: Evaluation", type='primary'):
     st.switch_page("pages/Evaluation.py")
